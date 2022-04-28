@@ -69,28 +69,57 @@ function updateScore (result) {
         const content = document.createElement('div');
         content.classList.add('scoretick');
         container.appendChild(content);
+        return 2;
     }
+
     else if (result === "LOSS") {
         const container = document.querySelector("#ai-score");
         const content = document.createElement('div');
         content.classList.add('scoretick');
         container.appendChild(content);
+        return 3;
+    }
+    else return 4;
+}
+function resetSquares(aiScore, youScore) {
+    const ticks = document.getElementsByClassName('scoretick');
+    while(ticks.length > 0) {
+        ticks[0].parentNode.removeChild(ticks[0]);
+    }
+    if (aiScore > youScore) {
+        alert("You lost! LOSER HAHAHAHAHA");
+    }
+    else if (youScore > aiScore) {
+        alert("WINNER! THE BEST PLAYER!")
     }
 }
 const events = document.querySelectorAll('.key');
-const scoreboard = document.querySelector('#ai-score');
-const playerScoreboard = document.querySelector('#player-score');
+let aiScore = 0;
+let youScore = 0;
 
-function addListerner (event, aiScore, youScore) {
+function addListerner (event) {
     event.addEventListener('click', function(event) {
         console.log(event.target.id);
         let round = playRound(playerSelect(event.target.id), computerPlay(getRandomInt()));
         console.log(round);
-        let score = updateScore(round, aiScore, youScore);
-        console.log(score);
+        let score = updateScore(round);
+        if (score === 3) {
+            aiScore++;
+        }
+        else if (score === 2) {
+            youScore++;
+        }
+        console.log(aiScore);
+        console.log(youScore);
+        if (aiScore >= 5 || youScore >= 5) {
+            resetSquares(aiScore, youScore);
+            aiScore = 0;
+            youScore = 0;
+        }
+
 });
 }
-let result = events.forEach(addListerner);
+events.forEach(addListerner);
     
 
 
