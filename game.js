@@ -51,7 +51,15 @@ function playRound (playerSelected, computerSelected) {
     }
     else return "Wrong input! Try again!";
 }
-console.log(getRandomInt());
-let player = prompt("Choose!");
-let computer = computerPlay(getRandomInt());
-console.log(playRound(playerSelect(player), computer));
+
+const events = document.querySelectorAll('.key');
+
+function addListerner (event) {
+    event.addEventListener('click', function(event) {
+        console.log(event.target.id);
+        let round = playRound(playerSelect(event.target.id), computerPlay(getRandomInt()));
+        console.log(round);
+
+});
+}
+events.forEach(addListerner);

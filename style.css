@@ -1,0 +1,33 @@
+body {
+    border: none;
+    margin: 0px;
+}
+#container {
+    display: flex;
+    background-color: rgb(42, 80, 163);
+    align-items: center;
+    justify-items: center;
+    border: none;
+    margin: 0px;
+    height: 100vh;
+}
+
+.keys {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    background-color: rgb(56, 56, 56);
+    margin-right: auto;
+}
+
+.key {
+    display: flex;
+    flex: 0 1 auto;
+    padding: 50px;
+    margin: 100px;
+    border: 5px solid black;
+
+}
+
