@@ -4,14 +4,27 @@ body {
 }
 #container {
     display: flex;
+    flex-direction: column;
     background-color: rgb(42, 80, 163);
     align-items: center;
-    justify-items: center;
+    justify-content: center;
     border: none;
     margin: 0px;
     height: 100vh;
 }
 
+.score {
+    flex: 1;
+    display: flex;
+    gap: 2px;
+
+}
+
+.scoretick {
+    background-color: green;
+    height: 20px;
+    width: 20px;
+}
 .keys {
     display: flex;
     flex: 1;
@@ -19,12 +32,12 @@ body {
     justify-items: center;
     justify-content: center;
     background-color: rgb(56, 56, 56);
-    margin-right: auto;
 }
 
 .key {
     display: flex;
-    flex: 0 1 auto;
+    flex: 1 1 auto;
+    justify-content: center;
     padding: 50px;
     margin: 100px;
     border: 5px solid black;

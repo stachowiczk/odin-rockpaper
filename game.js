@@ -29,37 +29,68 @@ function playerSelect (selection) {
 
 function playRound (playerSelected, computerSelected) {
     if (playerSelected == computerSelected) {
-        return "It's a tie!";
+        console.log("It's a tie!");
+        return "TIE";
     }
     else if (playerSelected == 2) {
         if (computerSelected == 1) {
-            return "You win! Scissors beats paper!";
+            console.log("You win! Scissors beats paper!");
+            return "WIN";
         }
-        else return "You lose! Rock beats scissors!";
+        else {
+            console.log("You lose! Rock beats scissors!");
+            return "LOSS"
+        }
     }
     else if (playerSelected == 1) {
         if (computerSelected == 2) {
-            return "You lose! Scissors beats paper!";
+            console.log("You lose! Scissors beats paper!");
+            return "LOSS";
         }
-        else return "You win! Paper beats rock!";
+        else {
+            console.log("You win! Paper beats rock!");
+            return "WIN";
+        }
     }
     else if (playerSelected == 0) {
         if (computerSelected == 2) {
-            return "You win! Rock beats scissors!";
+            console.log("You win! Rock beats scissors!")
+            return "WIN";
         }
-        else return "You lose! Paper beats rock!";
+        else {
+            console.log("You lose! Paper beats rock!");
+            return "LOSS";
     }
-    else return "Wrong input! Try again!";
+}}
+
+function updateScore (result) {
+    if (result === "WIN") {
+        const container = document.querySelector("#player-score");
+        const content = document.createElement('div');
+        content.classList.add('scoretick');
+        container.appendChild(content);
+    }
+    else if (result === "LOSS") {
+        const container = document.querySelector("#ai-score");
+        const content = document.createElement('div');
+        content.classList.add('scoretick');
+        container.appendChild(content);
+    }
 }
-
 const events = document.querySelectorAll('.key');
+const scoreboard = document.querySelector('#ai-score');
+const playerScoreboard = document.querySelector('#player-score');
 
-function addListerner (event) {
+function addListerner (event, aiScore, youScore) {
     event.addEventListener('click', function(event) {
         console.log(event.target.id);
         let round = playRound(playerSelect(event.target.id), computerPlay(getRandomInt()));
         console.log(round);
-
+        let score = updateScore(round, aiScore, youScore);
+        console.log(score);
 });
 }
-events.forEach(addListerner);
+let result = events.forEach(addListerner);
+    
+
+
