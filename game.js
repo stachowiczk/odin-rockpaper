@@ -1,8 +1,13 @@
+//general purpose pseudorandom integer generator
+//range goed in the Math.ceil(lower) and Math.floor(upper)
+//don't ask why. floats everywhere ffs.
 function getRandomInt () {
     const min = Math.ceil(0);
     const max = Math.floor(3);
     return Math.floor(Math.random() * (max - min) + min);
 }
+//this could be redundant idk
+//though the getRandomInt is reusable anywhere
 function computerPlay (random_int) {
     switch (random_int) {
         case 0:
@@ -14,6 +19,9 @@ function computerPlay (random_int) {
     }
 }
 
+//this gets passed the target.id of
+//the click event listener (below) and is then
+//passed into the playRound function
 function playerSelect (selection) {
     let lowercase = selection.toLowerCase();
     switch (selection) {
@@ -27,6 +35,8 @@ function playerSelect (selection) {
     return 3;
 }
 
+//this compares the results of both players
+//and returns them as strings
 function playRound (playerSelected, computerSelected) {
     if (playerSelected == computerSelected) {
         console.log("It's a tie!");
@@ -63,6 +73,8 @@ function playRound (playerSelected, computerSelected) {
     }
 }}
 
+//this keeps score and displays squares on the winner's side
+//no new squares appear after a "TIE" result
 function updateScore (result) {
     if (result === "WIN") {
         const container = document.querySelector("#player-score");
@@ -81,6 +93,8 @@ function updateScore (result) {
     }
     else return 4;
 }
+
+//reset the score when player/ai reacher 5 points
 function resetSquares(aiScore, youScore) {
     const ticks = document.getElementsByClassName('scoretick');
     while(ticks.length > 0) {
@@ -97,7 +111,9 @@ const events = document.querySelectorAll('.key');
 let aiScore = 0;
 let youScore = 0;
 
-function addListerner (event) {
+//returns a number assigned to a div that the user
+//can click
+function addListener (event) {
     event.addEventListener('click', function(event) {
         console.log(event.target.id);
         let round = playRound(playerSelect(event.target.id), computerPlay(getRandomInt()));
@@ -119,7 +135,7 @@ function addListerner (event) {
 
 });
 }
-events.forEach(addListerner);
+events.forEach(addListener);
     
 
 
