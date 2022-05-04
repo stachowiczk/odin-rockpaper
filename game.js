@@ -87,10 +87,10 @@ function resetSquares(aiScore, youScore) {
         ticks[0].parentNode.removeChild(ticks[0]);
     }
     if (aiScore > youScore) {
-        alert("You lost! LOSER HAHAHAHAHA");
+        alert("You lost!");
     }
     else if (youScore > aiScore) {
-        alert("WINNER! THE BEST PLAYER!")
+        alert("WINNER!")
     }
 }
 const events = document.querySelectorAll('.key');
